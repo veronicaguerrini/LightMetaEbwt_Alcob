@@ -1,4 +1,5 @@
-# LightMetaEbwt (Lightweight Metagenomic Classification via eBWT)
+# LightMetaEbwt 
+(Lightweight Metagenomic Classification via eBWT)
 
 LightMetaEbwt is a new lightweight alignment-free and assembly-free framework for metagenomic classification that compares each unknown sequence in the sample to a collection of known genomes.
 

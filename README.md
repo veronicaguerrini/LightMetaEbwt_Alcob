@@ -7,7 +7,7 @@ Takes in input:
 - the longest common prefix array 
 - the document array 
 
-of a very large collection {\em S} of strings including both reads and genomes. The required data structures can be obtained by running BCR [https://github.com/giovannarosone/BCR_LCP_GSA] on input the fasta file of the entire collection.
+of a very large collection *S* of strings including both reads and genomes. The required data structures can be obtained by running BCR [https://github.com/giovannarosone/BCR_LCP_GSA] on input the fasta file of the entire collection *S*.
 
 ### Install
 

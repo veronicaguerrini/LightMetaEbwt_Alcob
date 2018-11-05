@@ -1,1 +1,1 @@
-Hello
+cat compressed.gz* | zcat > /path/to/decrompressed/file

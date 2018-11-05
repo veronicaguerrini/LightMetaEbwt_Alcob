@@ -6,8 +6,8 @@ Takes in input:
 - the (extended) Burrows–Wheeler transform (multi-string BWT)
 - the longest common prefix array 
 - the document array 
-of a very large collection of strings. 
-and it can be obtained by BCR [https://github.com/giovannarosone/BCR_LCP_GSA]
+
+of a very large collection of strings inclusing both reads and genomes. The required data structures can be obtained by running BCR [https://github.com/giovannarosone/BCR_LCP_GSA] on input the collection fasta file.
 
 ### Install
 
@@ -17,11 +17,12 @@ cd LightMetaEbwt-master
 ```
 
 ```sh
-./to do
+./install.sh
 ```
 
 
 ### Run
+
 ```sh
  ./to do
 ```

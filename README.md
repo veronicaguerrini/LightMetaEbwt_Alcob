@@ -13,7 +13,7 @@ and it can be obtained by BCR [https://github.com/giovannarosone/BCR_LCP_GSA]
 
 ```sh
 git clone https://github.com/veronicaguerrini/LightMetaEbwt
-cdLightMetaEbwt-master
+cd LightMetaEbwt-master
 ```
 
 ```sh

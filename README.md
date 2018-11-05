@@ -15,7 +15,7 @@ and it can be obtained by BCR [https://github.com/giovannarosone/BCR_LCP_GSA]
 git clone https://github.com/veronicaguerrini/LightMetaEbwt
 cdLightMetaEbwt-master
 ```
-Open parameters.h file and, please, set the parameters (data structured that must be computed, types, and so on...).
+
 ```sh
 ./to do
 ```

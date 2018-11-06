@@ -24,12 +24,18 @@ cd LightMetaEbwt-master
 ### Run
 
 ```sh
- ./to do
+ ./ClusterLCP fileFasta numReads numGenomes alpha
+ ./ClusterBWT fileFasta readLength beta
+ ./Classify numFile fileInput numGenomes
 ```
 
 ### Example
 ```sh
-./to do
+./ClusterLCP setB2_1.fasta 20249373 930 16
+./ClusterLCP setB2_2.fasta 20249373 930 16
+./ClusterBWT setB2_1.fasta 100 0.36
+./ClusterBWT setB2_2.fasta 100 0.36
+./Classify 2 Clustering_results_B0.36_setB2_1.fasta.txt Clustering_results_B0.36_setB2_2.fasta.txt 930
 ```
 
 

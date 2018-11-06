@@ -9,6 +9,8 @@ Takes in input:
 
 of a very large collection *S* of strings including both reads and genomes. The required data structures can be obtained by running BCR [https://github.com/giovannarosone/BCR_LCP_GSA] on input the fasta file of the entire collection *S*.
 
+Soon online
+
 ### Install
 
 ```sh

@@ -19,13 +19,19 @@ install.sh
 
 ### Run
 Our method works in three steps: 
+
 (1) we detect and keep some blocks of ebwt(*S*) in which the associated suffixes share a common context of a minimum length *alpha*, and to which both reads and genomes belong; 
+
 (2) we analyze these interesting blocks in order to evaluate a degree of similarity between any read and any genome in *S*, requiring a minimum similarity value *beta*; 
+
 (3) we perform the read assignment: for every read, either we retrieve the unique genome of belonging, or we report that it is not possible to identify it.
 
 The three steps are accomplished by running:
+
 (1) ClusterLCP, which takes in input the fasta file name, the total number of reads in *S*, the total number of genomes in *S* and *alpha*;
+
 (2) ClusterBWT, which takes in input the fasta file name, the length of reads and *beta*;
+
 (3) Classify, which takes in input txt files obtained by running ClusterBWT and the total number of genomes in *S*.
 
 ```sh

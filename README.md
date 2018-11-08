@@ -15,13 +15,9 @@ Soon online
 
 ```sh
 git clone https://github.com/veronicaguerrini/LightMetaEbwt
-cd LightMetaEbwt-master
+cd LightMetaEbwt
+install.sh
 ```
-
-```sh
-./install.sh
-```
-
 
 ### Run
 

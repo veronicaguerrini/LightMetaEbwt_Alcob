@@ -28,11 +28,11 @@ Our method works in three steps:
 
 The three steps are accomplished by running:
 
-(1) ClusterLCP with input parameters: name of the fasta file, total number of reads in *S*, total number of genomes in *S* and *alpha*;
+(1) ClusterLCP with input parameters name of the fasta file, total number of reads in *S*, total number of genomes in *S* and *alpha*;
 
-(2) ClusterBWT with input parameters: name of the fasta file, length of reads, and *beta*;
+(2) ClusterBWT with input parameters name of the fasta file, length of reads, and *beta*;
 
-(3) Classify, which takes in input txt files obtained by running ClusterBWT and the total number of genomes in *S*.
+(3) Classify providing in input txt files obtained by running ClusterBWT, and the total number of genomes in *S*.
 
 ```sh
  ClusterLCP fileFasta numReads numGenomes alpha
@@ -42,6 +42,7 @@ The three steps are accomplished by running:
 Note that in order to run ClusterLCP we need to have fileFasta.lcp and fileFasta.da computed, while to run ClusterBWT we need fileFasta.da and fileFasta.ebwt.
 
 ### Example
+Let setB2_1+Refs.fasta and setB2_2+Refs.fasta be two datasets containing 20249373 paired end reads of setB2 and 930 genomes. See for details Datasets/Experiments_links.txt
 
 ```sh
 ./ClusterLCP setB2_1.fasta 20249373 930 16

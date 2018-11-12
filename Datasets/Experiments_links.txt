@@ -1,12 +1,12 @@
 As the method requires, each dataset provided to do experiments contains both reads and genomes. 
-Here are the instructions to build up four different datasets each one obtained by union of:
+Here are the instructions to build up eight different datasets each one obtained by union of:
 
-* a set of reads (setA2, or setB2, or setA2ran, or setB2ran),
+* a set of reads (setA2_1, setA2_2, setB2_1, setB2_2, setA2ran_1, setA2ran_2, setB2ran_1, setB2ran_2)
 * a set of genomes (reference database). 
 
 
 
-### Sets of reads (setA2, setB2, setA2ran, and setB2ran)
+### Sets of reads
 
 The sets of simulated paired end reads we used for experiments are downloadable from 
 
@@ -15,7 +15,7 @@ http://www.gardner-binflab.org/lindgreen-et-al-metagenomics-benchmark-data/
 and were designed ad hoc for a benchmarking analysis of metagenomic tools by reproducing the size, complexity and characteristics of real metagenomic samples. 
 Moreover, Lindgreen's datasets were designed to include subsets of simulated shuffled reads as negative controls in order to test the reliability of the tools.
 
-For our experiments, we selected the two sets setA2 and setB2 and we modified the content of each fasta file as follows. 
+For our experiments, we selected the sets setA2 (setA2_1, setA2_2) and setB2 (setB2_1, setB2_2) and we modified the content of each fasta file as follows. 
 
 First, we took out the random shuffled reads creating two negative control sets of reads, setA2ran and setB2ran.
 Titles of shuffled random reads are in files title_setA2ran.txt.gz and title_setB2ran.txt.gz, respectively.

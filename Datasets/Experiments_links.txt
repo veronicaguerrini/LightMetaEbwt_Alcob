@@ -2,7 +2,12 @@ Datasets used to do experiments contain both reads and genomes.
 
 ### Reads
 
-The sets of paired end reads we used for experiments are downloadable from [http://www.gardner-binflab.org/lindgreen-et-al-metagenomics-benchmark-data/], and were designed ad hoc for a benchmarking analysis of metagenomic tools by reproducing the size, complexity and characteristics of real metagenomic samples. Moreover, each dataset was designed to include a subset of simulated shuffled reads as negative control in order to test the reliability of the tools.
+The sets of paired end reads we used for experiments are downloadable from 
+
+http://www.gardner-binflab.org/lindgreen-et-al-metagenomics-benchmark-data/,
+
+and were designed ad hoc for a benchmarking analysis of metagenomic tools by reproducing the size, complexity and characteristics of real metagenomic samples. 
+Moreover, each dataset was designed to include a subset of simulated shuffled reads as negative control in order to test the reliability of the tools.
 
 For our experiments, we selected setA2 and setB2, and we modified the content of each fasta file as follows. 
 

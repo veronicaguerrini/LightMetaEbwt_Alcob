@@ -1,22 +1,27 @@
-Datasets used to do experiments contain both reads and genomes. 
+Datasets used to do experiments must contain both reads and genomes. 
+Here are the instructions to build up four different datasets each one obtained by union between a set of reads (one among setA2, setB2, setA2ran, and setB2ran) and the set of genomes (reference database). 
 
-### Reads
+### Sets of reads
 
-The sets of paired end reads we used for experiments are downloadable from 
+The sets of simulated paired end reads we used for experiments are downloadable from 
 
 http://www.gardner-binflab.org/lindgreen-et-al-metagenomics-benchmark-data/
 
 and were designed ad hoc for a benchmarking analysis of metagenomic tools by reproducing the size, complexity and characteristics of real metagenomic samples. 
-Moreover, each dataset was designed to include a subset of simulated shuffled reads as negative control in order to test the reliability of the tools.
+Moreover, Lindgreen's datasets were designed to include subsets of simulated shuffled reads as negative controls in order to test the reliability of the tools.
 
-For our experiments, we selected setA2 and setB2, and we modified the content of each fasta file as follows. 
+For our experiments, we selected the two sets setA2 and setB2 and we modified the content of each fasta file as follows. 
 
 First, we took out the random shuffled reads creating two negative control sets of reads, setA2ran and setB2ran.
 Titles of shuffled random reads are in files title_setA2ran.txt.gz and title_setB2ran.txt.gz, respectively.
 
-Second, we removed a group of reads associated with the phylum of Eukaryotes whose species provenance was not specified.
-In addition, we preferred not to include in our datasets a group of reads associated with $3$ genomes whose entries in the NCBI database are expiring for being obsolete or incorrect. 
-Our sets of reads setA2 and setB2 thus contain around 20 millions of sequences belonging to $17$ different phyla and $686$ species.
-The complete list of reads taken into account in setA2 and setB2 is partitioned in files title_setA2_part_.gz* and title_setB2_part_.gz*, respectively -- to decompress them 
+Second, we removed from setA2 and from setB2 a group of reads associated with the phylum of Eukaryotes whose species provenance was not specified.
+In addition, we preferred to discard also a group of reads whose associated genomes are expiring entries in the NCBI database being obsolete or incorrect. 
+Each set of considered reads of setA2 and setB2 thus contains around 20 millions of sequences belonging to 17 different phyla and 686 species. 
+The complete list of reads taken into account in setA2 and setB2 is partitioned in files title_setA2_part_.gz* and title_setB2_part_.gz*, respectively.
+To decompress them one could use the command cat compressed.gz* | zcat > /path/to/decrompressed/file
 
-cat compressed.gz* | zcat > /path/to/decrompressed/file
+### Reference database
+
+The set of reference genomes were provided by Lindgreen et al. https://www.nature.com/articles/srep19233 in the Supplementary Table S2.
+In Reference_database.csv we report accession numbers, phyla, and species of the 930 genomes considered in our datasets.  

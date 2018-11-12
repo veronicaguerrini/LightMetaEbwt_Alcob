@@ -31,4 +31,6 @@ To decompress them one could use the command cat compressed.gz* | zcat > /path/t
 ### Reference database
 
 The set of reference genomes were provided by Lindgreen et al. https://www.nature.com/articles/srep19233 in the Supplementary Table S2.
-In Reference_database.csv we report accession numbers, phyla, and species of the 930 genomes considered in our datasets.  
+In Reference_database.csv we report accession numbers, phyla, and species of the 930 genomes considered in our datasets. 
+
+

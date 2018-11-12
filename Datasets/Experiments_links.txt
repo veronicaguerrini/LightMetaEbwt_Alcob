@@ -1,6 +1,10 @@
 As the method requires, each dataset provided to do experiments contains both reads and genomes. 
+Here are the instructions to build up four different datasets each one obtained by union of:
 
-Here are the instructions to build up four different datasets each one obtained by union between a set of reads (setA2, or setB2, or setA2ran, or setB2ran) and a set of genomes (reference database). 
+* a set of reads (setA2, or setB2, or setA2ran, or setB2ran),
+* a set of genomes (reference database). 
+
+
 
 ### Sets of reads (setA2, setB2, setA2ran, and setB2ran)
 
@@ -21,6 +25,8 @@ In addition, we preferred to discard also a group of reads whose associated geno
 Each set of considered reads of setA2 and setB2 thus contains around 20 millions of sequences belonging to 17 different phyla and 686 species. 
 The complete list of reads taken into account in setA2 and setB2 is partitioned in files title_setA2_part_.gz* and title_setB2_part_.gz*, respectively.
 To decompress them one could use the command cat compressed.gz* | zcat > /path/to/decrompressed/file
+
+
 
 ### Reference database
 

@@ -24,7 +24,7 @@ Our method works in three steps:
 
 (2) we analyze these interesting blocks in order to evaluate a degree of similarity between any read and any genome in *S*, and we discard similarity values that do not exceed a threshold value *beta*; 
 
-(3) we perform the read assignment: for every read in *S*, either we retrieve the unique genome of belonging or we report that it is not possible to identify it.
+(3) we perform the read assignment: for every read, either we retrieve the unique genome of belonging or we report that it is not possible to identify it.
 
 The three steps are accomplished by running:
 
@@ -42,12 +42,14 @@ The three steps are accomplished by running:
 Note that in order to run ClusterLCP we need to have fileFasta.lcp and fileFasta.da computed, while to run ClusterBWT we need fileFasta.da and fileFasta.ebwt.
 
 ### Example
-Let setB2_1+Refs.fasta and setB2_2+Refs.fasta be two datasets containing 20249373 paired end reads of setB2 and 930 genomes. See for details Datasets/Experiments_links.txt
+SetB2_1+Refs.fasta and setB2_2+Refs.fasta are two sets of sequences containing paired end reads (number of reads in each set: 20,249,373) and reference genomes (number of genomes: 930). (See for details Datasets/Experiments_links.txt). 
+
+We set alpha=16 and beta=0.36, and then we classify each read comparing similarity values reported by both ends of the same read.
 
 ```sh
 ./ClusterLCP setB2_1.fasta 20249373 930 16
-./ClusterLCP setB2_2.fasta 20249373 930 16
 ./ClusterBWT setB2_1.fasta 100 0.36
+./ClusterLCP setB2_2.fasta 20249373 930 16
 ./ClusterBWT setB2_2.fasta 100 0.36
 ./Classify 2 Clustering_results_B0.36_setB2_1.fasta.txt Clustering_results_B0.36_setB2_2.fasta.txt 930
 ```

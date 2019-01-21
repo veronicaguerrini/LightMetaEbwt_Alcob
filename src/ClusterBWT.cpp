@@ -7,7 +7,7 @@ As preprocessing, it need to have the two data structures fileFasta.da and fileF
 
 Input: fileFasta, read length, minimum similarity value beta
  
-Output: A .txt file named Clustering_results_N(beta)_(fileFasta).txt having as many lines as the number of reads
+Output: A .txt file named Clustering_results_B(beta)_(fileFasta).txt having as many lines as the number of reads
 
 Each line of the output file corresponds to a unique read R_j, and according to the minimum similarity value beta it can be either empty or storing the following information: 
 maximum similarity value for R_j, the set S={(R_k, positive similarity between R_j and R_k), being R_k a reference genome}.
@@ -148,10 +148,10 @@ dataTypeNChar clusterRefine(FILE* InFileCluster, FILE* InFileDA, FILE* InFileBWT
                 if(BWTbuffer[i]=='A' || BWTbuffer[i]=='C' || BWTbuffer[i]=='G' || BWTbuffer[i]=='T')
                 {
                     symbol=sigma[BWTbuffer[i]];
-                    if (CheckFreq[symbol][entry]<255)
+                    if (CheckFreq[symbol][entry]<USim_MAX)
                         CheckFreq[symbol][entry]++;
                 }
-                else if (CheckFreq[4][entry]<255)
+                else if (CheckFreq[4][entry]<USim_MAX)
                     CheckFreq[4][entry]++;
                 
             }
@@ -171,7 +171,7 @@ dataTypeNChar clusterRefine(FILE* InFileCluster, FILE* InFileDA, FILE* InFileBWT
 					t+=HowManyJolly(CheckFreq[4][i],placeholder+diff_ref);//Case placeholders
 					
                     temp = SimArray_[mapIDinv[j]-nRead][mapIDinv[i]]+t;
-                    assert(temp <255);
+                    assert(temp <USim_MAX);
                     SimArray_[mapIDinv[j]-nRead][mapIDinv[i]]=temp;
                 }
             }
@@ -265,9 +265,9 @@ int main(int argc, char **argv) {
     sscanf(argv[2], "%hhu", &readLen);
     sscanf(argv[3], "%f", &beta);
 	
-	if ( (readLen>255) && (dataTypeNumSim==0))
+	if ( (readLen>USim_MAX) && (dataTypeNumSim==0))
 	{
-		std::cerr << "Error Usage: read length greater than expected, please change settings of dataTypeNumSim in Tools.h" << std::endl;
+		std::cerr << "Error Usage: readLen <= USim_MAX, please change settings of dataTypeNumSim in Tools.h" << std::endl;
 		exit(1);
 	}
 	
@@ -292,7 +292,7 @@ int main(int argc, char **argv) {
     fclose(outAux);
     
     if (maxLen>sizeMaxBuf)
-        cerr << "Error Usage: maximum cluster size greater than constant sizeMaxBuf, please increase sizeMaxBuf in Tools.h" << endl;
+        cerr << "Error Usage: maximum cluster size is " << maxLen << " greater than sizeMaxBuf, please increase sizeMaxBuf in Tools.h" << endl;
     
     dataTypelenSeq norm=readLen+1-minLCP; //to normalize similarity values
 	

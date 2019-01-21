@@ -86,10 +86,10 @@ struct type_cluster {
 
 #define TaxLevel 1	//Taxonomy rank
 
-#if TaxLevel == 1
-#   define dataTypeSet dataTypeNSeq
-#else
+#if TaxLevel == 0
 #   define dataTypeSet string
+#else
+#   define dataTypeSet dataTypeNSeq
 #endif
 
 struct occ {

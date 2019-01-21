@@ -59,12 +59,14 @@ dataTypeNChar clusterLCP(FILE* InFileLCP, FILE* InFileDA, FILE* fdCluster, dataT
 					else
 						nG=true;
                 }
-				
+		if (not (nR && nG))
+		{
 				if (bufferEle[indexbuffer+1]<nRead)
 					nR=true;
 				else
 					nG=true;
-			}
+		}
+	    }
             else    //End a cluster
 			{
 				if (init && nR && nG)

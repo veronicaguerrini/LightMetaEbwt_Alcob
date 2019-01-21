@@ -58,7 +58,7 @@ typedef unsigned long ulong;
 #endif
 
 #if dataTypeNumSim == 1
-#   define dataTypeNSeq uint
+#   define dataTypeSim uint
 #else
 #   define dataTypeSim uchar  
 #endif

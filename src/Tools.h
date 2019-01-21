@@ -7,6 +7,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <limits.h>
 #include <errno.h>
 #include <iostream>
 #include <sstream>
@@ -30,7 +31,7 @@
 #define sizeMaxBuf 4096
 #define BUFFERCLUSTER 1048576
 
-#define ERROR 0.0588
+#define ERROR 0.02
 
 using namespace std;
 
@@ -62,6 +63,12 @@ typedef unsigned long ulong;
 #   define dataTypeSim uchar  
 #endif
 
+#if dataTypeNumSim == 1
+#   define USim_MAX UINT_MAX
+#else
+#   define USim_MAX UCHAR_MAX 
+#endif
+
 struct ElementCluster {
 	dataTypeNChar pStart;
 	dataTypeNChar len;
@@ -79,11 +86,17 @@ struct type_cluster {
 
 #define TaxLevel 1	//Taxonomy rank
 
-#if TaxLevel == 0
+#if TaxLevel == 1
 #   define dataTypeSet dataTypeNSeq
 #else
 #   define dataTypeSet string
 #endif
+
+struct occ {
+	dataTypeSet idSpecies;
+	float maxRead;
+	float maxPairedRead;
+};
 
 void time_start(time_t *t_time, clock_t *c_clock){
     

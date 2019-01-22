@@ -1,13 +1,21 @@
 # LightMetaEbwt 
 
-LightMetaEbwt is a new lightweight alignment-free and assembly-free framework for metagenomic classification that compares each unknown sequence in the sample to a collection of known genomes.
+LightMetaEbwt is a new lightweight alignment-free and assembly-free framework for metagenomic classification that is combinatorial by nature and allows us to use little internal memory. Let *S* be a large collection of biological sequences comprising both reads and genomes. For simplicity, we denote by *R* the subset of reads (metagenomic sample) and by *G* the subset of genomes (reference database).
 
 It takes in input:
-- the extended Burrows–Wheeler transform (ebwt), or multi-string BWT,
-- the longest common prefix array (lcp),
-- the document array (da),
+- the extended Burrows–Wheeler transform (ebwt), or multi-string BWT, of collection *S*;
+- the longest common prefix array (lcp) of collection *S*;
+- the document array (da) of collection *S*.
 
-of a very large collection *S* of strings including both reads and genomes. The required data structures can be obtained by running BCR [https://github.com/giovannarosone/BCR_LCP_GSA] on input the fasta file of the entire collection *S*.
+By establishing a similarity degree between sequences that exploits the underlying properties of the eBWT, LightMetaEbwt performs a metagenomic classification by assigning any read in *R* to a unique genome in *G*.
+The method works in three steps: 
+
+(1) we detect and keep some blocks of ebwt(*S*) in which the associated suffixes share a common context of a minimum length *alpha*, and to which both reads and genomes belong; 
+
+(2) we analyze these interesting blocks in order to evaluate a degree of similarity between any read and any genome in *S*, and we discard similarity values that do not exceed a threshold value *beta*; 
+
+(3) we perform the read assignment: for every read, either we retrieve the unique genome of belonging or we report that it is not possible to identify it.
+
 
 ### Install
 
@@ -16,15 +24,22 @@ git clone https://github.com/veronicaguerrini/LightMetaEbwt
 cd LightMetaEbwt
 install.sh
 ```
+### Preprocessing step
+
+The required data structures can be obtained by running BCR [https://github.com/giovannarosone/BCR_LCP_GSA] on input the fasta file of the entire collection *S*.
+This task for our tool can be achieved using, for example,
+BCR [5], Egsa [16], gsacak [15], GAP [6] or eGAP [7]. As the set G of genomes is
+the same for each experiment, we can build the data structures of G only once,
+by using GAP4
+. Then we can use BCR5
+(it is a tool for very large collection of
+short reads) for building the data structures for R and use eGAP6
+for merging
+them obtaining the data structures for the entire collection S. On the other hand,
+exploiting the mathematical properties of the permutation associated with the
+eBWT and LCP array
 
 ### Run
-Our method works in three steps: 
-
-(1) we detect and keep some blocks of ebwt(*S*) in which the associated suffixes share a common context of a minimum length *alpha*, and to which both reads and genomes belong; 
-
-(2) we analyze these interesting blocks in order to evaluate a degree of similarity between any read and any genome in *S*, and we discard similarity values that do not exceed a threshold value *beta*; 
-
-(3) we perform the read assignment: for every read, either we retrieve the unique genome of belonging or we report that it is not possible to identify it.
 
 The three steps are accomplished by running:
 

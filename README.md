@@ -31,7 +31,7 @@ There are mainly two options to obtain the required data structures (ebwt, lcp, 
 
 The advantage of the latter choice lies in the fact that we can build the data structures of *G* only once if the set *G* of genomes is the same for each experiment.
 
-To build ebwt, lcp, and da file from scratch for a single fasta, one could use BCR [https://github.com/giovannarosone/BCR_LCP_GSA], or Egsa [https://github.com/felipelouza/egsa], for instance.
+To build ebwt, lcp, and da file from scratch from a single fasta file, one could use BCR [https://github.com/giovannarosone/BCR_LCP_GSA], or Egsa [https://github.com/felipelouza/egsa], for instance.
 
 To merge the data structures ebwt and lcp associated with *R* and *G*, one could use eGap [https://github.com/felipelouza/egap] and set the option -d to obtain the document array (da) of the merge. Note that in this case the output da contains only 0s and 1s, and in order to obtain the da of the entire collection *S* it is necessary to replace 0s with the values in da(*R*) and 1s with da(*G*).
 

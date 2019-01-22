@@ -25,7 +25,14 @@ install.sh
 ```
 ### Preprocessing step
 
-The required data structures can be obtained by running BCR [https://github.com/giovannarosone/BCR_LCP_GSA] on input the fasta file of the entire collection *S*.
+There are mainly two options to obtain the required data structures (ebwt, lcp, da) for *S*:
+- one could build ebwt, lcp, and da starting from a fasta file containing both the reads in *R* and the genomes in *G*;
+- one could build the data structures ebwt, lcp, and da separately for the set *G* and the set *R*, and then merge them to obtain ebwt, lcp, and da for the collection *S*.
+The advantage of the latter lies in the fact that if the set *G* of genomes is the same for each experiment, we can build the data structures of *G* only once.
+
+To build ebwt, lcp, and da file from scratch for a single fasta, one could use BCR [https://github.com/giovannarosone/BCR_LCP_GSA], or Egsa [https://github.com/felipelouza/egsa], for instance. 
+To merge the data structures ebwt and lcp associated with *R* and *G*, one could use eGap [https://github.com/felipelouza/egap] and set the option -d to obtain the document array (da) of the merge. Note that in this case the output da contains only 0s and 1s, and in order to obtain the da of the entire collection *S* it is necessary to replace 0s with the values in da(*R*) and 1s with da(*G*).
+On the other hand, one could use incremental BCR [https://github.com/giovannarosone/BCR_LCP_GSA] to update the data structures of *G* (without constructing the eBWT for *R* from scratch) and obtain the data structures for *S*.
 
 ### Run
 

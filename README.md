@@ -45,16 +45,26 @@ The three steps are accomplished by running:
 Recall that in order to run ClusterLCP we need to have fileFasta.lcp and fileFasta.da computed, while to run ClusterBWT we need fileFasta.da and fileFasta.ebwt.
 
 ### Example
-SetB2_1+Refs.fasta and setB2_2+Refs.fasta are two sets of sequences containing paired end reads (number of reads in each set: 20,249,373) and reference genomes (number of genomes: 930). (See for details Datasets/Experiments_links.txt). 
 
-We set alpha=16 and beta=0.36, and then we classify each read comparing similarity values reported by both ends of the same read.
+SetB2 is a set of 20,249,373 paired end short reads (100 bps).
+We construct datastructures (ebwt, lcp, da) for setB2_1.fasta and setB2_2.fasta, and for setB2_1_RC.fasta and setB2_2_RC.fasta, which contain their reverse complement.
+We construct datastructures (ebwt, lcp, da) for the set *G* -- Refs.fasta is the fasta file of reference genomes (number of genomes: 930). (See for details Datasets/Experiments_links.txt). 
+We merge the datastructures (ebwt, lcp, da) associated with Refs.fasta to those associated with the sets of reads, as to obtain the datastructures for the four collections: setB2_1+Refs.fasta, setB2_1_RC+Refs.fasta, setB2_2+Refs.fasta, setB2_2_RC+Refs.fasta.
+
+We assign any read (or its reverse complement) in setB2 to a reference genome in *G*.
+For our analysis, we set the minimum common context alpha=16 and the minimum similarity score beta=0.25.
 
 ```sh
-./ClusterLCP setB2_1.fasta 20249373 930 16
-./ClusterBWT setB2_1.fasta 100 0.36
-./ClusterLCP setB2_2.fasta 20249373 930 16
-./ClusterBWT setB2_2.fasta 100 0.36
-./Classify 2 Clustering_results_B0.36_setB2_1.fasta.txt Clustering_results_B0.36_setB2_2.fasta.txt 930
+for X in 1 1_RC 2 2_RC
+do
+ ClusterLCP setB2_$X+Refs.fasta 20249373 930 16
+ ClusterBWT setB2_$X+Refs.fasta 100 0.25 
+done
+```
+The outputs of steps (1) and (2) are then given in input to step (3).
+
+```sh
+Classify 4 Clustering_results_B0.25_setB2_1+Refs.fasta.txt Clustering_results_B0.25_setB2_1_RC+Refs.fasta.txt Clustering_results_B0.25_setB2_2+Refs.fasta.txt Clustering_results_B0.25_setB2_2_RC+Refs.fasta.txt 930 results_setB2.txt
 ```
 ---
 <small> Supported by the project Italian MIUR-SIR [CMACBioSeq][240fb5f5] ("_Combinatorial methods for analysis and compression of biological sequences_") grant n.~RBSI146R5L. P.I. Giovanna Rosone</small>

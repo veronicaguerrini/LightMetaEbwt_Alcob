@@ -7,7 +7,7 @@ It takes in input:
 - the longest common prefix array (lcp) of collection *S*;
 - the document array (da) of collection *S*.
 
-By establishing a similarity degree between sequences that exploits the underlying properties of the eBWT, LightMetaEbwt performs a metagenomic classification by assigning any read in *R* to a unique genome in *G*. The method steps can be summarised in three steps, as follows: 
+By establishing a similarity degree between sequences that exploits the underlying properties of the eBWT, LightMetaEbwt performs a metagenomic classification by assigning any read in *R* to a unique genome in *G*. The method steps can be summarized in three steps, as follows: 
 
 (1) we detect and keep some blocks of ebwt(*S*) in which the associated suffixes share a common context of a minimum length *alpha*, and to which both reads and genomes belong; 
 
@@ -36,7 +36,7 @@ To build ebwt, lcp, and da file from scratch from a single fasta file, one could
 To merge the data structures ebwt and lcp associated with *R* and *G*, one could use eGap [https://github.com/felipelouza/egap] and set the option -d to obtain the document array (da) of the merge. Note that in this case the output da contains only 0s and 1s, and in order to obtain the da of the entire collection *S* it is necessary to replace 0s with the values in da(*R*) and 1s with da(*G*).
 
 On the other hand, exploiting the mathematical properties of the permutation associated with the
-eBWT and LCP, one could use BCR [https://github.com/giovannarosone/BCR_LCP_GSA] incrementally in order to update the data structures of *G* (without constructing the eBWT for *R* from scratch) and obtain the data structures for *S*.
+eBWT and LCP, one could use BCR [https://github.com/giovannarosone/BCR_LCP_GSA] incrementally in order to update the data structures for *G* (without constructing the eBWT for *R* from scratch) and obtain the data structures for *S*.
 
 ### Run
 

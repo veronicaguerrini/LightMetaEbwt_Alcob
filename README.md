@@ -54,10 +54,13 @@ Recall that in order to run ClusterLCP we need to have fileFasta.lcp and fileFas
 
 ### Example
 
-SetB2 is a set of 20,249,373 paired end short reads (100 bps).
-We construct datastructures (ebwt, lcp, da) for setB2_1.fasta and setB2_2.fasta, and for setB2_1_RC.fasta and setB2_2_RC.fasta, which contain their reverse complement.
-We construct datastructures (ebwt, lcp, da) for the set *G* -- Refs.fasta is the fasta file of reference genomes (number of genomes: 930). (See for details Datasets/Experiments_links.txt). 
-We merge the datastructures (ebwt, lcp, da) associated with Refs.fasta to those associated with the sets of reads, as to obtain the datastructures for the four collections: setB2_1+Refs.fasta, setB2_1_RC+Refs.fasta, setB2_2+Refs.fasta, setB2_2_RC+Refs.fasta.
+In Datasets, we provide some examples of simulated metagenomic samples. (See for details Datasets/Experiments_links.txt).
+
+The dataset setB2 is a sample of 20,249,373 paired end short reads (100 bps) stored in setB2_1.fasta and setB2_2.fasta.
+As preprocessing, we construct the datastructures ebwt, lcp, and da for the set *G* -- Refs.fasta is the fasta file of reference genomes (number of genomes: 930). 
+Then, we merge the datastructures (ebwt, lcp, da) associated with Refs.fasta to those associated with the sets of reads
+-- setB2_1.fasta and setB2_2.fasta, and setB2_1_RC.fasta and setB2_2_RC.fasta, which contain the reverse complement of setB2_1.fasta and setB2_2.fasta) -- as to obtain the datastructures for the four collections: 
+setB2_1+Refs.fasta, setB2_1_RC+Refs.fasta, setB2_2+Refs.fasta, setB2_2_RC+Refs.fasta.
 
 We assign any read (or its reverse complement) in setB2 to a reference genome in *G*.
 For our analysis, we set the minimum common context alpha=16 and the minimum similarity score beta=0.25.

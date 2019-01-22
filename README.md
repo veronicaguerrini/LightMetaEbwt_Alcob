@@ -27,17 +27,6 @@ install.sh
 ### Preprocessing step
 
 The required data structures can be obtained by running BCR [https://github.com/giovannarosone/BCR_LCP_GSA] on input the fasta file of the entire collection *S*.
-This task for our tool can be achieved using, for example,
-BCR [5], Egsa [16], gsacak [15], GAP [6] or eGAP [7]. As the set G of genomes is
-the same for each experiment, we can build the data structures of G only once,
-by using GAP4
-. Then we can use BCR5
-(it is a tool for very large collection of
-short reads) for building the data structures for R and use eGAP6
-for merging
-them obtaining the data structures for the entire collection S. On the other hand,
-exploiting the mathematical properties of the permutation associated with the
-eBWT and LCP array
 
 ### Run
 

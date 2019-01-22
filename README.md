@@ -30,8 +30,10 @@ There are mainly two options to obtain the required data structures (ebwt, lcp, 
 - one could build the data structures ebwt, lcp, and da separately for the set *G* and the set *R*, and then merge them to obtain ebwt, lcp, and da for the collection *S*.
 The advantage of the latter lies in the fact that if the set *G* of genomes is the same for each experiment, we can build the data structures of *G* only once.
 
-To build ebwt, lcp, and da file from scratch for a single fasta, one could use BCR [https://github.com/giovannarosone/BCR_LCP_GSA], or Egsa [https://github.com/felipelouza/egsa], for instance. 
+To build ebwt, lcp, and da file from scratch for a single fasta, one could use BCR [https://github.com/giovannarosone/BCR_LCP_GSA], or Egsa [https://github.com/felipelouza/egsa], for instance.
+
 To merge the data structures ebwt and lcp associated with *R* and *G*, one could use eGap [https://github.com/felipelouza/egap] and set the option -d to obtain the document array (da) of the merge. Note that in this case the output da contains only 0s and 1s, and in order to obtain the da of the entire collection *S* it is necessary to replace 0s with the values in da(*R*) and 1s with da(*G*).
+
 On the other hand, exploiting the mathematical properties of the permutation associated with the
 eBWT and LCP, one could use BCR [https://github.com/giovannarosone/BCR_LCP_GSA] incrementally in order to update the data structures of *G* (without constructing the eBWT for *R* from scratch) and obtain the data structures for *S*.
 
@@ -57,7 +59,9 @@ Recall that in order to run ClusterLCP we need to have fileFasta.lcp and fileFas
 In Datasets, we provide some examples of simulated metagenomic samples. (See for details Datasets/Experiments_links.txt).
 
 The dataset setB2 is a sample of 20,249,373 paired end short reads (100 bps) stored in setB2_1.fasta and setB2_2.fasta.
-As preprocessing, we construct the datastructures ebwt, lcp, and da for the set *G* -- Refs.fasta is the fasta file of reference genomes (number of genomes: 930). Then, we merge the datastructures (ebwt, lcp, da) associated with Refs.fasta to those associated with the sets of reads -- setB2_1.fasta and setB2_2.fasta, and setB2_1_RC.fasta and setB2_2_RC.fasta, which contain the reverse complement of setB2_1.fasta and setB2_2.fasta) -- as to obtain the datastructures for the four collections: 
+
+As preprocessing, we construct the datastructures ebwt, lcp, and da for the set *G* -- Refs.fasta is the fasta file of reference genomes (number of genomes: 930). 
+Then, we merge the datastructures (ebwt, lcp, da) associated with Refs.fasta to those associated with the sets of reads (setB2_1.fasta and setB2_2.fasta, and setB2_1_RC.fasta and setB2_2_RC.fasta, which contain the reverse complement of setB2_1.fasta and setB2_2.fasta) as to obtain the datastructures for the four collections: 
 setB2_1+Refs.fasta, setB2_1_RC+Refs.fasta, setB2_2+Refs.fasta, setB2_2_RC+Refs.fasta.
 
 We assign any read (or its reverse complement) in setB2 to a reference genome in *G*.

@@ -7,8 +7,7 @@ It takes in input:
 - the longest common prefix array (lcp) of collection *S*;
 - the document array (da) of collection *S*.
 
-By establishing a similarity degree between sequences that exploits the underlying properties of the eBWT, LightMetaEbwt performs a metagenomic classification by assigning any read in *R* to a unique genome in *G*.
-The method works in three steps: 
+By establishing a similarity degree between sequences that exploits the underlying properties of the eBWT, LightMetaEbwt performs a metagenomic classification by assigning any read in *R* to a unique genome in *G*. The method steps can be summarised in three steps, as follows: 
 
 (1) we detect and keep some blocks of ebwt(*S*) in which the associated suffixes share a common context of a minimum length *alpha*, and to which both reads and genomes belong; 
 
@@ -36,14 +35,14 @@ The three steps are accomplished by running:
 
 (2) ClusterBWT with input parameters name of the fasta file, length of reads, and *beta*;
 
-(3) Classify providing in input txt files obtained by running ClusterBWT, and the total number of genomes in *S*.
+(3) Classify providing in input txt files obtained by running ClusterBWT, the total number of genomes in *S*, and name of the output file.
 
 ```sh
  ClusterLCP fileFasta numReads numGenomes alpha
  ClusterBWT fileFasta readLength beta
- Classify N fileInput1 ... fileInputN numGenomes
+ Classify N fileInput1 ... fileInputN numGenomes fileOutput
 ```
-Note that in order to run ClusterLCP we need to have fileFasta.lcp and fileFasta.da computed, while to run ClusterBWT we need fileFasta.da and fileFasta.ebwt.
+Recall that in order to run ClusterLCP we need to have fileFasta.lcp and fileFasta.da computed, while to run ClusterBWT we need fileFasta.da and fileFasta.ebwt.
 
 ### Example
 SetB2_1+Refs.fasta and setB2_2+Refs.fasta are two sets of sequences containing paired end reads (number of reads in each set: 20,249,373) and reference genomes (number of genomes: 930). (See for details Datasets/Experiments_links.txt). 

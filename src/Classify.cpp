@@ -126,6 +126,7 @@ void AmbiguousClassification(std::vector<string> &lineInput, uint &numFile, data
     if (CompareMates.size() == 0) {
         out << "A," << idSeqRead << ","	<< "NA,0\n";
         numA++;
+	return;
     }
 					
     //Mate 2

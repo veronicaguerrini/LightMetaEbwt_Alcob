@@ -93,9 +93,9 @@ struct type_cluster {
 #endif
 
 struct occ {
-	dataTypeSet idSpecies;
+	dataTypeSet TaxID;
 	float maxRead;
-	float maxPairedRead;
+	float maxMate;
 };
 
 void time_start(time_t *t_time, clock_t *c_clock){

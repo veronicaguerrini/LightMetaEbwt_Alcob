@@ -28,6 +28,7 @@ install.sh
 There are mainly two options to obtain the required data structures (ebwt, lcp, da) for *S*:
 - one could build ebwt, lcp, and da starting from a fasta file containing both the reads in *R* and the genomes in *G*;
 - one could build the data structures ebwt, lcp, and da separately for the set *G* and the set *R*, and then merge them to obtain ebwt, lcp, and da for the collection *S*.
+
 The advantage of the latter choice lies in the fact that we can build the data structures of *G* only once if the set *G* of genomes is the same for each experiment.
 
 To build ebwt, lcp, and da file from scratch for a single fasta, one could use BCR [https://github.com/giovannarosone/BCR_LCP_GSA], or Egsa [https://github.com/felipelouza/egsa], for instance.

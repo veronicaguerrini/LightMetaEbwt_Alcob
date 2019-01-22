@@ -61,7 +61,7 @@ do
  ClusterBWT setB2_$X+Refs.fasta 100 0.25 
 done
 ```
-The outputs of steps (1) and (2) are then given in input to step (3).
+The output of steps (1) and (2) are then given in input to step (3).
 
 ```sh
 Classify 4 Clustering_results_B0.25_setB2_1+Refs.fasta.txt Clustering_results_B0.25_setB2_1_RC+Refs.fasta.txt Clustering_results_B0.25_setB2_2+Refs.fasta.txt Clustering_results_B0.25_setB2_2_RC+Refs.fasta.txt 930 results_setB2.txt

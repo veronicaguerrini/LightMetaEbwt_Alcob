@@ -1,4 +1,3 @@
-As the method requires, each dataset provided to do experiments contains both reads and genomes. 
 Here are the instructions to build up eight different datasets each one obtained by union of:
 
 * a set of reads (setA2_1, setA2_2, setB2_1, setB2_2, setA2ran_1, setA2ran_2, setB2ran_1, setB2ran_2)
@@ -31,6 +30,6 @@ To decompress them one could use the command cat compressed.gz* | zcat > /path/t
 ### Reference database
 
 The set of reference genomes were provided by Lindgreen et al. https://www.nature.com/articles/srep19233 in the Supplementary Table S2.
-In Reference_database.csv we report accession numbers, phyla, and species of the 930 genomes considered in our datasets. 
+In Reference_database.csv we report accession numbers, phylum taxonomy ID, and species taxonomy ID for each of the 930 genomes considered in our datasets. 
 
 

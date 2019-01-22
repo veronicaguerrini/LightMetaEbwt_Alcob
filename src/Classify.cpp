@@ -26,7 +26,7 @@ void readCorrespondence(dataTypeNSeq &numTarg, std::vector<dataTypeSet> &v_corRe
 	
 	if (f_taxid.is_open())   
 	{
-		std::cerr << "Reading taxonomical information from" << fileTaxID << ".\n";
+		std::cerr << "Reading taxonomical information from " << fileTaxID << ".\n";
 	}
 	else 
 		std::cerr << "Error opening file " << fileTaxID << ".\n";

@@ -31,12 +31,12 @@ There are mainly two options to obtain the required data structures (ebwt, lcp, 
 
 The advantage of the latter choice lies in the fact that we can build the data structures of *G* only once if the set *G* of genomes is the same for each experiment.
 
-To build ebwt, lcp, and da file from scratch from a single fasta file, one could use BCR [https://github.com/giovannarosone/BCR_LCP_GSA], or Egsa [https://github.com/felipelouza/egsa], for instance.
+To build ebwt, lcp, and da files from scratch from a single fasta file, one could use BCR [https://github.com/giovannarosone/BCR_LCP_GSA], or egsa [https://github.com/felipelouza/egsa] for instance. Note that egsa tool returns the three datastructures in a single file (fastaFile.K.gesa, with K being the number of sequences). The executable file EGSAtoBCR is to convert fastaFile.K.gesa into fileFasta.ebwt, fileFasta.lcp, and fileFasta.da -- command: EGSAtoBCR filefasta K.
 
-To merge the data structures ebwt and lcp associated with *R* and *G*, one could use eGap [https://github.com/felipelouza/egap] and set the option -d to obtain the document array (da) of the merge. Note that in this case the output da contains only 0s and 1s, and in order to obtain the da of the entire collection *S* it is necessary to replace 0s with the values in da(*R*) and 1s with da(*G*).
+To merge the data structures ebwt and lcp associated with *R* and *G*, one could use eGap [https://github.com/felipelouza/egap] and set the option -d to obtain the document array (da) of the merge. Note that in this case the output document array contains only 0s and 1s, and as to obtain the da of the entire collection *S* it is necessary to replace 0s with the values in da(*R*) and 1s with da(*G*).
 
 On the other hand, exploiting the mathematical properties of the permutation associated with the
-eBWT and LCP, one could use BCR [https://github.com/giovannarosone/BCR_LCP_GSA] incrementally in order to update the data structures for *G* (without constructing the eBWT for *R* from scratch) and obtain the data structures for *S*.
+ebwt and lcp, one could use BCR [https://github.com/giovannarosone/BCR_LCP_GSA] incrementally in order to update the data structures obtained for *G* and obtain the data structures for the entire collection *S* (without constructing the eBWT and lcp for *R* from scratch) .
 
 ### Run
 

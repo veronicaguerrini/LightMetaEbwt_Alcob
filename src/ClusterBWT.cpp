@@ -177,10 +177,6 @@ dataTypeNChar clusterRefine(FILE* InFileCluster, FILE* InFileDA, FILE* InFileBWT
                     SimArray_[mapIDinv[j]-nRead][mapIDinv[i]]=temp;
                 }
             }
-            
-            mapID.clear();
-            mapIDinv.clear();
-            
             AnaCluster++;
             
         }//end-for

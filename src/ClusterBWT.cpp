@@ -48,7 +48,7 @@ dataTypeSim HowManyJolly(dataTypeSim v1, uint v2){
 
 
 
-dataTypeNChar clusterRefine(FILE* InFileCluster, FILE* InFileDA, FILE* InFileBWT, dataTypeNSeq nRead, vector< vector<dataTypeSim> > &SimArray_)
+dataTypeNChar clusterRefine(FILE* InFileCluster, FILE* InFileDA, FILE* InFileBWT, dataTypeNSeq nRead, dataTypeNSeq tot, vector< vector<dataTypeSim> > &SimArray_)
 {
     dataTypeNChar AnaCluster;
     
@@ -59,8 +59,10 @@ dataTypeNChar clusterRefine(FILE* InFileCluster, FILE* InFileDA, FILE* InFileBWT
     sigma['G']=2;
     sigma['T']=3;
 	
-    std::map<dataTypeNSeq,dataTypeNSeq> mapID;
-    std::map<dataTypeNSeq,dataTypeNSeq> mapIDinv;
+   dataTypeNSeq *mapID;
+	mapID = new dataTypeNSeq[tot];
+   dataTypeNSeq *mapIDinv;
+	mapIDinv = new dataTypeNSeq[sizeMaxBuf];
     
 	//To read InFileCluster
     dataTypeNChar numcharCluster;
@@ -189,7 +191,10 @@ dataTypeNChar clusterRefine(FILE* InFileCluster, FILE* InFileDA, FILE* InFileBWT
     delete[] clusterbuffer;
 	delete[] elebuffer;
 	delete[] BWTbuffer;
-    
+	
+    delete[] mapID;
+    delete[] mapIDinv;
+	
 	for(uint k= 0; k < 5; ++k)
    	 	delete [] CheckFreq[k];
     
@@ -349,8 +354,9 @@ int main(int argc, char **argv) {
     cerr << "Computing similarity arrays SimArray_i[1,numRead]..." << endl;
     
     time_start(&t_refine, &c_refine); //start time for clusterRefine
-    
-    dataTypeNChar clu =clusterRefine(InCluster,InDA,InBWT,numRead, SimArray_);
+	
+    dataTypeNSeq totSeq=numRead+numRef;
+    dataTypeNChar clu =clusterRefine(InCluster,InDA,InBWT,numRead, totSeq, SimArray_);
 
 	
     fclose(InCluster);

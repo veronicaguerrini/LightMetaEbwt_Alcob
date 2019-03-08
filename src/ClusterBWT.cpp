@@ -172,9 +172,9 @@ dataTypeNChar clusterRefine(FILE* InFileCluster, FILE* InFileDA, FILE* InFileBWT
                         t+=HowManyTimesW(CheckFreq[k][i],CheckFreq[k][j], placeholder, diff_ref);
 					t+=HowManyJolly(CheckFreq[4][i],placeholder+diff_ref);//Case placeholders
 					
-                    temp = SimArray_[mapIDinv[j]-nRead][mapIDinv[i]]+t;
+                    temp = SimArray_[mapIDinv[i]][mapIDinv[j]-nRead]+t;
                     assert(temp <USim_MAX);
-                    SimArray_[mapIDinv[j]-nRead][mapIDinv[i]]=temp;
+                    SimArray_[mapIDinv[i]][mapIDinv[j]-nRead]=temp;
                 }
             }
             AnaCluster++;
@@ -214,7 +214,7 @@ void clusterChoose(FILE* OutFileClusters, dataTypelenSeq &norm, float &beta, dat
 		
         for(dataTypeNSeq j=0;j<nRef;j++)
         {
-            pair.sim= SimArray_[j][index];
+            pair.sim= SimArray_[index][j];
             
             if (pair.sim>maxSim) //Update the maximum similarity
                 maxSim=pair.sim;

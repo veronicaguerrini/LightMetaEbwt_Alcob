@@ -337,10 +337,10 @@ int main(int argc, char **argv) {
   
     //Similarity arrays
     vector < vector<dataTypeSim> > SimArray_;
-    SimArray_.resize(numRef);
-    for(dataTypeNSeq i=0;i<numRef;i++ )
+    SimArray_.resize(numRead);
+    for(dataTypeNSeq i=0;i<numRead;i++ )
     {
-        SimArray_[i].resize(numRead);
+        SimArray_[i].resize(numRef);
         for (dataTypeNSeq j=0;j<numRef;j++)
             SimArray_[i][j]=0;
     }

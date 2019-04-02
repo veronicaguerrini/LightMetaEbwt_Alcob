@@ -65,11 +65,11 @@ void ReadSimilarity(const string & s, std::set<dataTypeSet> & set, std::vector<d
     dataTypeNSeq ReadIdRef;
 	bool val;
 	istringstream is( s );
-	val= (is >> maxSim);
+	val=static_cast<bool> (is >> maxSim);
     while( val == 1 ) {
-		val = (is >> ReadIdRef); //genome identifier index
+		val = static_cast<bool> (is >> ReadIdRef); //genome identifier index
 		if ( val == 1 ) {
-			val =(is >> Sim);			
+			val = static_cast<bool> (is >> Sim);			
 			if (maxSim - Sim < (static_cast<float>(ERROR)) )
 				set.insert(v_corRef[ReadIdRef]);//store only genome identifiers for which the similarity value is close to the maximum value maxSim
 		}

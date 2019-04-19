@@ -100,6 +100,7 @@ void AmbiguousClassification(std::vector<string> &lineInput, uint &numFile, data
 				el.TaxID=v_corRef[ReadIdRef];
 				el.maxRead=Sim;
 				el.maxMate=0;
+				index=0;
 				while ((index<CompareMates.size()) && (el.TaxID <CompareMates[index].TaxID))
 					index++;
 						
@@ -141,7 +142,7 @@ void AmbiguousClassification(std::vector<string> &lineInput, uint &numFile, data
 				el.TaxID=v_corRef[ReadIdRef];
 				el.maxRead=0;
 				el.maxMate=Sim;
-                uint index=0;
+                index=0;
 				while ((index<CompareMates.size()) && (el.TaxID <CompareMates[index].TaxID))
                     index++;
 							

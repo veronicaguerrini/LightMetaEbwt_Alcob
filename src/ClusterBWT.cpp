@@ -14,30 +14,49 @@ maximum similarity value for R_j, the set S={(R_k, positive similarity between R
 */
 
 
-dataTypeSim HowManyTimesW(dataTypeSim v1,dataTypeSim v2, dataTypeSim &v3, uint &diff_ref){
-	//Case: #A(or #C,#G,#T) read v1 <= v2 #A(or #C,#G,#T) reference
+dataTypeSim FindMinimumKeepUnmatched(dataTypeSim v1,dataTypeSim v2, dataTypeSim *v3, uint *diff_ref){
 	dataTypeSim w=0;
 	if (v1<=v2)
 	{
 		w=v1;
-		diff_ref+=v2-v1;
+		*diff_ref+=v2-v1;
 	}
 	else //v1>v2 we use some placeholders
 	{
-		if (v1<=v2+v3)
-        {
+		if (v1<=v2+*v3)
+    {
 			w=v1;
-			v3-=(v1-v2);
+			*v3-=(v1-v2);
 		}
 		else
 		{
-            w=v2+v3;   //v2+v3<v1<255
-			v3=0; //all placeholders used
+			w=v2+*v3;   //v2+v3<v1<255
+			*v3=0; //all placeholders used
 		}
 	}
 	return w;
 }
 
+dataTypeSim FindMinimum(dataTypeSim v1,dataTypeSim v2, dataTypeSim *v3){
+	//Case: #A(or #C,#G,#T) read v1 <= v2 #A(or #C,#G,#T) reference
+	dataTypeSim w=0;
+	if (v1<=v2)
+		w=v1;
+	else //v1>v2 we use some placeholders
+	{
+		if (v1<=v2+*v3)
+		{
+			w=v1;
+			*v3-=(v1-v2);
+		}
+		else
+		{
+			w=v2+*v3;   //v2+v3<v1<255
+			*v3=0; //all placeholders used
+		}
+	}
+	return w;
+}
 
 dataTypeSim HowManyJolly(dataTypeSim v1, uint v2){
 	if (v1<=v2)
@@ -52,12 +71,26 @@ dataTypeNChar clusterRefine(FILE* InFileCluster, FILE* InFileDA, FILE* InFileBWT
 {
     dataTypeNChar AnaCluster;
     
-    //sigma is to store the BWT symbols A,C,G,T -- other symbols are placeholders.
-	std::map<char,uint> sigma;
-    sigma['A']=0;
-    sigma['C']=1;
-    sigma['G']=2;
-    sigma['T']=3;
+    //sigma is to store the BWT symbols
+	dataTypedimAlpha *sigma;
+  	sigma= new dataTypedimAlpha[USim_MAX];
+  	dataTypedimAlpha index_letter_0=1;
+  	dataTypedimAlpha index_letter_1=5;
+  	for (uchar i=0; i<USim_MAX; i++)
+ 	{
+		if( i==65 || i==67 || i==71 || i==84 )//A,C,G,T
+		{
+		sigma[i]=index_letter_0;
+		index_letter_0++;
+		}
+		else if( i==66 || i==68 || i==72 || i==75 || i==77 || i==82 || i==83 || i==86 || i==87 || i==89 )//B,D,H,K,M,R,S,V,W,Y
+		{
+		sigma[i]=index_letter_1;
+		index_letter_1++;
+		}
+		else //N,$
+			sigma[i]=0;
+	}
 	
    dataTypeNSeq *mapID;
 	mapID = new dataTypeNSeq[tot];
@@ -78,9 +111,9 @@ dataTypeNChar clusterRefine(FILE* InFileCluster, FILE* InFileDA, FILE* InFileBWT
     //cout << "Allocating memory..." << endl;
     
     dataTypeSim **CheckFreq; //Store the number of (A,C,G,T,placeholders) for each sequence
-	CheckFreq=new dataTypeSim*[5];
-    for (uint i = 0; i < 5; ++i)
-    	CheckFreq[i] = new dataTypeSim[sizeMaxBuf];
+	CheckFreq=new dataTypeSim*[sizeMaxBuf];
+    for (uint i = 0; i <sizeMaxBuf; ++i)
+    	CheckFreq[i] = new dataTypeSim[index_letter_1];
     
     uint symbol;
     dataTypeNSeq entry;
@@ -89,7 +122,6 @@ dataTypeNChar clusterRefine(FILE* InFileCluster, FILE* InFileDA, FILE* InFileBWT
     
     dataTypeSim t=0; //counter (t cannot be greater than 255, since each read has length 101)
     dataTypeSim placeholder=0; //to decrease placeholder symbols used
-    uint temp;
     uint diff_ref=0;//counter storing reference BWTletters that could match read placeholders
     
     //Read InFileCluster
@@ -137,25 +169,18 @@ dataTypeNChar clusterRefine(FILE* InFileCluster, FILE* InFileDA, FILE* InFileBWT
             idInCluster.clear();
             
             //Reset CheckFreq
-            for(uint k=0; k<5; k++)
+            for(dataTypeNSeq i=0; i<sizec; i++)
             {
-                for(dataTypeNSeq i=0; i<sizec; i++)
-                    CheckFreq[k][i]=0;
+                for(uint k=0; k<index_letter_1; k++)
+                    CheckFreq[i][k]=0;
             }
             
             
             for (dataTypeNChar i=0; i<clusterbuffer[c].len; i++)
             { 
                 entry=mapID[elebuffer[i]];
-                if(BWTbuffer[i]=='A' || BWTbuffer[i]=='C' || BWTbuffer[i]=='G' || BWTbuffer[i]=='T')
-                {
-                    symbol=sigma[BWTbuffer[i]];
-                    if (CheckFreq[symbol][entry]<USim_MAX)
-                        CheckFreq[symbol][entry]++;
-                }
-                else if (CheckFreq[4][entry]<USim_MAX)
-                    CheckFreq[4][entry]++;
-                
+                if (CheckFreq[entry][sigma[BWTbuffer[i]]]<USim_MAX)
+              		CheckFreq[entry][sigma[BWTbuffer[i]]]++;
             }
 
             //cout << "Comparing..." << endl;
@@ -164,15 +189,18 @@ dataTypeNChar clusterRefine(FILE* InFileCluster, FILE* InFileDA, FILE* InFileBWT
             {
                 for (dataTypeNSeq j=sizer; j<sizec;j++)//range over references
                 {
-					t=0;
+			t=0;
                     diff_ref=0;
-                    placeholder=CheckFreq[4][j];
-                    
-					for (uint k=0;k<4; k++)//Case A,C,G,T
-                        t+=HowManyTimesW(CheckFreq[k][i],CheckFreq[k][j], placeholder, diff_ref);
-					t+=HowManyJolly(CheckFreq[4][i],placeholder+diff_ref);//Case placeholders
+                    placeholder=CheckFreq[j][0];
+			
+                    for (dataTypedimAlpha k=1;k<index_letter_0; k++)
+              		t+=FindMinimum(CheckFreq[i][k],CheckFreq[j][k], &placeholder); //Case A,C,G,T --> A,C,G,T,($,N)
+		for (dataTypedimAlpha k=index_letter_0;k<index_letter_1; k++) //Case B,D,H,K,M,R,S,V,W,Y --> B,D,H,K,M,R,S,V,W,Y,($,N)
+			t+=FindMinimumKeepUnmatched(CheckFreq[i][k],CheckFreq[j][k], &placeholder, &diff_ref);
+			
+           	 t+=HowManyJolly(CheckFreq[i][0],placeholder+diff_ref);//Case (N,$) --> iupac,$,N
 					
-                    temp = SimArray_[mapIDinv[i]][mapIDinv[j]-nRead]+t;
+                    uint temp = SimArray_[mapIDinv[i]][mapIDinv[j]-nRead]+t;
                     assert(temp <USim_MAX);
                     SimArray_[mapIDinv[i]][mapIDinv[j]-nRead]=temp;
                 }
@@ -191,7 +219,7 @@ dataTypeNChar clusterRefine(FILE* InFileCluster, FILE* InFileDA, FILE* InFileBWT
     delete[] mapID;
     delete[] mapIDinv;
 	
-	for(uint k= 0; k < 5; ++k)
+	for(uint k= 0; k < sizeMaxBuf; ++k)
    	 	delete [] CheckFreq[k];
     
     return AnaCluster;
@@ -309,7 +337,7 @@ int main(int argc, char **argv) {
 	FILE * InCluster;
     InCluster = fopen(fnCluster.c_str(), "rb");
     if (InCluster==NULL) {
-        std::cerr << "ClusterLCP_0Mis: Error opening " << fnCluster << "." << std::endl;
+        std::cerr << "ClusterBWT: Error opening " << fnCluster << "." << std::endl;
         printf("fopen failed, errno = %d\n", errno);
         exit (EXIT_FAILURE);
     }
@@ -321,7 +349,7 @@ int main(int argc, char **argv) {
     
     InBWT = fopen(fnBWT.c_str(), "rb");
     if (InBWT==NULL) {
-        std::cerr << "ClusterLCP_0Mis: Error opening " << fnBWT << "." << std::endl;
+        std::cerr << "ClusterBWT: Error opening " << fnBWT << "." << std::endl;
         printf("fopen failed, errno = %d\n", errno);
         exit (EXIT_FAILURE);
     }
@@ -330,7 +358,7 @@ int main(int argc, char **argv) {
     
     InDA = fopen(fnDA.c_str(), "rb");
     if (InDA==NULL) {
-        std::cerr << "ClusterLCP_0Mis: Error opening " << fnDA << "." << std::endl;
+        std::cerr << "ClusterBWT: Error opening " << fnDA << "." << std::endl;
         printf("fopen failed, errno = %d\n", errno);
         exit (EXIT_FAILURE);
     }

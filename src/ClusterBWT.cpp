@@ -321,8 +321,11 @@ int main(int argc, char **argv) {
     fclose(outAux);
     
     if (maxLen>sizeMaxBuf)
+    {
         cerr << "Error Usage: maximum cluster size is " << maxLen << " greater than sizeMaxBuf, please increase sizeMaxBuf in Tools.h" << endl;
-    
+    	 exit (EXIT_FAILURE);
+    }
+	
     dataTypelenSeq norm=readLen+1-minLCP; //to normalize similarity values
 	
 	//Open files .clrs, .ebwt, .da

@@ -1,6 +1,6 @@
 # LightMetaEbwt 
 
-LightMetaEbwt is a new lightweight alignment-free and assembly-free framework for metagenomic classification that is combinatorial by nature and allows us to use little internal memory. Let *S* be a large collection of biological sequences comprising both reads and genomes. For simplicity, we denote by *R* the subset of reads (metagenomic sample) and by *G* the subset of genomes (reference database).
+LightMetaEbwt is a new lightweight alignment-free and assembly-free framework for metagenomic classification that is combinatorial by nature and allows us to use little internal memory [1]. Let *S* be a large collection of biological sequences comprising both reads and genomes. For simplicity, we denote by *R* the subset of reads (metagenomic sample) and by *G* the subset of genomes (reference database).
 
 It takes in input:
 - the extended Burrows–Wheeler transform (ebwt), or multi-string BWT, of collection *S*;

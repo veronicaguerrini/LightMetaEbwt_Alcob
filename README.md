@@ -80,7 +80,10 @@ The output of steps (1) and (2) are then given in input to step (3).
 ```sh
 Classify 4 Clustering_results_B0.25_setB2_1+Refs.fasta.txt Clustering_results_B0.25_setB2_1_RC+Refs.fasta.txt Clustering_results_B0.25_setB2_2+Refs.fasta.txt Clustering_results_B0.25_setB2_2_RC+Refs.fasta.txt 930 results_setB2.txt
 ```
----
+## Reference
+
+## Thanks
+
 <small> Supported by the project Italian MIUR-SIR [CMACBioSeq][240fb5f5] ("_Combinatorial methods for analysis and compression of biological sequences_") grant n.~RBSI146R5L. P.I. Giovanna Rosone</small>
 
 [240fb5f5]: http://pages.di.unipi.it/rosone/CMACBioSeq.html

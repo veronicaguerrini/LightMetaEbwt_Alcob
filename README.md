@@ -80,7 +80,9 @@ The output of steps (1) and (2) are then given in input to step (3).
 ```sh
 Classify 4 Clustering_results_B0.25_setB2_1+Refs.fasta.txt Clustering_results_B0.25_setB2_1_RC+Refs.fasta.txt Clustering_results_B0.25_setB2_2+Refs.fasta.txt Clustering_results_B0.25_setB2_2_RC+Refs.fasta.txt 930 results_setB2.txt
 ```
-## Reference
+## References
+
+[1] V. Guerrini and G. Rosins. Lightweight Metagenomic Classification via eBWT. Alcob 2019. LNCS, vol 11488, pp 112-124.
 
 ## Thanks
 

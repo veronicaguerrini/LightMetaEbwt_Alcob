@@ -82,7 +82,7 @@ Classify 4 Clustering_results_B0.25_setB2_1+Refs.fasta.txt Clustering_results_B0
 ```
 ## References
 
-[1] V. Guerrini and G. Rosins. Lightweight Metagenomic Classification via eBWT. Alcob 2019. LNCS, vol 11488, pp 112-124.
+[1] V. Guerrini and G. Rosone. Lightweight Metagenomic Classification via eBWT. Alcob 2019. LNCS, vol 11488, pp 112-124.
 
 ## Thanks
 

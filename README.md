@@ -6,7 +6,7 @@ The newer version is now available: https://github.com/veronicaguerrini/LightMet
 
 ## References
 
-[1] V. Guerrini and G. Rosone. Lightweight Metagenomic Classification via eBWT. AlCoB 2019. LNCS, vol 11488, pp 112-124.[https://link.springer.com/chapter/10.1007/978-3-030-18174-1_8]
+[[1] V. Guerrini and G. Rosone. Lightweight Metagenomic Classification via eBWT. AlCoB 2019. LNCS, vol 11488, pp 112-124.] [https://link.springer.com/chapter/10.1007/978-3-030-18174-1_8]
 
 ## Thanks
 

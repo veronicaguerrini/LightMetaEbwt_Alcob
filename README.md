@@ -2,7 +2,7 @@
 
 This directory contains a preliminary version of the tool LightMetaEbwt, used for metagenomic classification experiments in our AlCoB'19 paper "Lightweight Metagenomic Classification via eBWT". 
 
-The newer version is now available: https://github.com/veronicaguerrini/LightMetaEbwt.
+The newer version is now available: https://github.com/veronicaguerrini/LiME.
 
 ## References
 
